@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/felipecrs/docker-on-docker-shim/proxy"
+	"github.com/felipecrs/docker-on-docker-proxy/proxy"
 )
 
 // enginePipe is where Windows clients of Docker look by default.
