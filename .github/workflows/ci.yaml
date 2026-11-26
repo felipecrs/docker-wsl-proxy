@@ -1,0 +1,54 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    # unlike the default, it enables pipefail
+    shell: bash
+
+jobs:
+  go:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
+        with:
+          go-version-file: go.mod
+      - run: test -z "$(gofmt -l .)"
+      - run: go vet ./...
+      # The end to end tests skip themselves here: they need Docker in WSL.
+      - run: go test ./...
+  build:
+    uses: ./.github/workflows/build.yaml
+  # The only job that has to be required to merge, as it depends on the others.
+  result:
+    needs: [go, build]
+    # otherwise it is skipped when one of them fails, and a skipped check counts as passed
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: jq --exit-status 'map_values(.result) | ., all(. == "success")' <<<"${NEEDS}"
+  release:
+    if: github.ref_type == 'tag'
+    needs: result
+    uses: ./.github/workflows/build.yaml
+    with:
+      release: true
+    permissions:
+      contents: write # to create the release
