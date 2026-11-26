@@ -2,7 +2,7 @@
 
 docker-wsl-proxy serves the Docker API at `\\.\pipe\docker_engine` on Windows for a Docker daemon inside WSL, and maps the paths of Windows in bind mounts to WSL, so that the native docker cli and every other client of Windows use Docker in WSL with no Docker Desktop. Read the [README](README.md) first.
 
-The proxy itself, which forwards the API and rewrites the bind mounts of `POST /containers/create`, is the package `github.com/felipecrs/docker-on-docker-shim/proxy` of [docker-on-docker-shim](https://github.com/felipecrs/docker-on-docker-shim). Change it there, then update the requirement in `go.mod` here.
+The proxy itself, which forwards the API and rewrites the bind mounts of `POST /containers/create`, is the package `github.com/felipecrs/docker-on-docker-proxy/proxy` of [docker-on-docker-proxy](https://github.com/felipecrs/docker-on-docker-proxy). Change it there, then update the requirement in `go.mod` here.
 
 ## Layout
 
@@ -38,7 +38,7 @@ The version is printed by `docker-wsl-proxy --version`.
 
 ## Releases
 
-Push a tag such as `v1.2.3` on `main`. ci runs all tests, and then publishes `docker-wsl-proxy-windows-amd64.zip` and `docker-wsl-proxy-windows-arm64.zip` (each with `docker-wsl-proxy.exe` and `LICENSE` at the root, as `mise use github:felipecrs/docker-wsl-proxy` expects), `checksums.txt`, and the GitHub release with generated notes. A tag with a pre-release suffix, such as `v1.2.3-rc.1`, makes a pre-release. Nothing is published from pull requests or `main`, but they run the same build.
+Push a tag such as `v1.2.3` on `master`. ci runs all tests, and then publishes `docker-wsl-proxy-windows-amd64.zip` and `docker-wsl-proxy-windows-arm64.zip` (each with `docker-wsl-proxy.exe` and `LICENSE` at the root, as `mise use github:felipecrs/docker-wsl-proxy` expects), `checksums.txt`, and the GitHub release with generated notes. A tag with a pre-release suffix, such as `v1.2.3-rc.1`, makes a pre-release. Nothing is published from pull requests or `master`, but they run the same build.
 
 Dependencies are updated by Renovate, see `renovate.json`.
 

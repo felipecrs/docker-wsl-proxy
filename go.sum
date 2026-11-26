@@ -1,6 +1,6 @@
 github.com/Microsoft/go-winio v0.6.4 h1:kJF2pamtYCWXf0xAT8sAkwKC0pMl2HYBrRPHAqyUc+g=
 github.com/Microsoft/go-winio v0.6.4/go.mod h1:1xl5JXG4ze/m74GH6Dc4Mwxfc3VL5siRVQjIAlHH07U=
-github.com/felipecrs/docker-on-docker-shim v0.9.2-0.20261126175738-cf4917d7b453 h1:d7q3BjtL51VIJpKcvd1I0NADH9oDsjbsV1dZlnkJcR8=
-github.com/felipecrs/docker-on-docker-shim v0.9.2-0.20261126175738-cf4917d7b453/go.mod h1:2mZbiVj7DX71+TlENsRzkSc9CP3uHd7wYQH/X8KVHNM=
+github.com/felipecrs/docker-on-docker-proxy v0.10.0 h1:WvAe4cXUYIFfDFB5/Tw1kHxHzlBraMaNdQdXhQSX1s0=
+github.com/felipecrs/docker-on-docker-proxy v0.10.0/go.mod h1:90241HQTYuQ0JLxBfSmZsL3/ZqvV+VNWQoNmoHEUPlM=
 golang.org/x/sys v0.50.0 h1:dkKZEFTEKaLr1sjhs0WiKqoi8Jj5nHbS3Njmx1UoMJs=
 golang.org/x/sys v0.50.0/go.mod h1:hNLxWAXmnKAxqDtdwIYC4bM9oQPEecfsnNMuSxOs3og=
